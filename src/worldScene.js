@@ -1,3 +1,5 @@
+import Actor from './actor.js';
+
 /**
  * Represent the home screen of the game.
  *
@@ -20,6 +22,6 @@ export default class WorldScene extends Phaser.Scene {
    * @memberof WorldScene
    */
   create() {
-    this.add.sprite(48, 48, 'sprites', 'a');
+    new Actor(this, 2, 2, 'sprites', 'a');
   }
 }
