@@ -49,4 +49,25 @@ export default class Actor extends Phaser.GameObjects.Sprite {
     }
     console.log(this.orders);
   }
+
+  /**
+   * Executes the next order and removes it from the list of orders.
+   *
+   * @memberof Actor
+   */
+  nextOrder() {
+    if (!this.orders.length) {
+      return;
+    }
+    const order = this.orders.shift();
+    console.log(order);
+    if (order.name === 'move') {
+      this.scene.tweens.add({
+        targets: this,
+        x: order.x * 32 + 16,
+        y: order.y * 32 + 16,
+        duration: 500,
+      });
+    }
+  }
 }

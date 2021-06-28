@@ -24,5 +24,11 @@ export default class WorldScene extends Phaser.Scene {
   create() {
     const a = new Actor(this, 2, 2, 'sprites', 'a');
     a.addOrder('move', 13, 5);
+    this.time.addEvent({
+      delay: 500,
+      callback: a.nextOrder,
+      callbackScope: a,
+      loop: true,
+    });
   }
 }
