@@ -13,14 +13,17 @@ export default class Actor extends Phaser.GameObjects.Sprite {
    * @param {number} y
    * @param {string} texture
    * @param {string} frame
+   * @param {number} speed
    * @memberof Actor
    */
-  constructor(scene, x, y, texture, frame) {
+  constructor(scene, x, y, texture, frame, speed) {
     super(scene, x * 32 + 16, y * 32 + 16, texture, frame);
     scene.children.add(this);
     this.tileX = x;
     this.tileY = y;
+    this.speed = speed;
     this.orders = [];
+    this.timeline = scene.tweens.createTimeline();
   }
 
   /**
@@ -55,18 +58,18 @@ export default class Actor extends Phaser.GameObjects.Sprite {
    *
    * @memberof Actor
    */
-  nextOrder() {
+  act() {
     if (!this.orders.length) {
       return;
     }
     const order = this.orders.shift();
     console.log(order);
     if (order.name === 'move') {
-      this.scene.tweens.add({
+      this.timeline.add({
         targets: this,
         x: order.x * 32 + 16,
         y: order.y * 32 + 16,
-        duration: 500,
+        duration: 1000 / this.speed,
       });
     }
   }
