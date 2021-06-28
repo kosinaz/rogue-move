@@ -19,13 +19,4 @@ export default class Actor extends Phaser.GameObjects.Sprite {
     super(scene, x * 32 + 16, y * 32 + 16, texture, frame);
     scene.children.add(this);
   }
-
-  /**
-   * Creates the content of the Actor.
-   *
-   * @memberof Actor
-   */
-  create() {
-
-  }
 }
