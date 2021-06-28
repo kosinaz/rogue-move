@@ -22,6 +22,7 @@ export default class WorldScene extends Phaser.Scene {
    * @memberof WorldScene
    */
   create() {
-    new Actor(this, 2, 2, 'sprites', 'a');
+    const a = new Actor(this, 2, 2, 'sprites', 'a');
+    a.addOrder('move', 13, 5);
   }
 }
