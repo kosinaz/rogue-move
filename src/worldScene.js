@@ -26,12 +26,21 @@ export default class WorldScene extends Phaser.Scene {
     a.addOrder('move', 13, 5);
     const b = new Actor(this, 12, 12, 'sprites', 'b', 4);
     b.addOrder('move', 7, 3);
-    a.act();
-    b.act();
-    a.act();
-    b.act();
-    a.act();
-    a.timeline.play();
-    b.timeline.play();
+    const c = new Actor(this, 6, 12, 'sprites', 'c', 2);
+    c.addOrder('move', 6, 1);
+    this.input.on('pointerdown', () => {
+      a.timeline = this.tweens.createTimeline();
+      b.timeline = this.tweens.createTimeline();
+      c.timeline = this.tweens.createTimeline();
+      a.act();
+      b.act();
+      a.act();
+      b.act();
+      a.act();
+      c.act();
+      a.timeline.play();
+      b.timeline.play();
+      c.timeline.play();
+    });
   }
 }
